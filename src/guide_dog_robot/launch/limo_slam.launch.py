@@ -15,7 +15,7 @@ def generate_launch_description():
         'slam_params.yaml'
     )
 
-    # 1) 같은 패키지 안의 bringup launch 포함
+    # 1) 같은 패키지 안의 bringup 실행 (나중에 내용 채워넣는 용)
     limo_bringup_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             os.path.join(
@@ -35,8 +35,18 @@ def generate_launch_description():
         parameters=[slam_params_file]
     )
 
+    # 3) RViz 노드 (기본 설정으로 실행)
+    rviz_node = Node(
+        package='rviz2',
+        executable='rviz2',
+        name='rviz2',
+        output='screen'
+        # 나중에 설정 파일 쓰고 싶으면:
+        # arguments=['-d', os.path.join(pkg_share, 'config', 'limo_slam.rviz')],
+    )
+
     return LaunchDescription([
         limo_bringup_launch,
         slam_toolbox_node,
+        rviz_node,
     ])
-

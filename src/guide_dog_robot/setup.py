@@ -16,6 +16,7 @@ setup(
         ('share/' + package_name, ['package.xml']),
         # launch 폴더 설치 설정 추가
         (os.path.join('share', package_name, 'launch'), glob('launch/*.launch.py')),
+        ('share/' + package_name + '/config', glob('config/*.yaml')),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
