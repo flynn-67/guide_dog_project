@@ -1,0 +1,30 @@
+slam_toolbox:
+  ros__parameters:
+    use_sim_time: false
+
+    # LIMO TF 기준 프레임 이름 (LIMO 오고 나서 tf_tree 보고 맞춰주면 됨)
+    map_frame: map
+    odom_frame: odom
+    base_frame: base_link
+
+    # LIMO 라이다 토픽 (보통 /scan일 확률이 큼. 나중에 ros2 topic list로 확인해서 바꿀 것)
+    scan_topic: scan
+
+    # 맵 따는 모드
+    slam_tools_plugin: "slam_toolbox::SyncSlamToolbox"
+    mode: "mapping"
+
+    # 얘네는 기본값 괜찮지만, 혹시 맵이 너무 거칠면 resolution 줄이면 됨 (0.05 → 0.03 같은 식)
+    resolution: 0.05
+    max_laser_range: 15.0
+
+    minimum_travel_distance: 0.1
+    minimum_travel_heading: 0.05
+
+    # loop closure 쪽 기본 세팅 (일단 손댈 필요 X)
+    use_scan_matching: true
+    use_scan_barycenter: true
+    use_smoothing: true
+
+    # debug용 로그(원하면 true)
+    debug_logging: false
